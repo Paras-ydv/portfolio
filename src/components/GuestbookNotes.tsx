@@ -6,13 +6,17 @@ import type { GuestbookNote } from "@/lib/stats/guestbook";
 /** "3 days ago" without pulling in a date library for one string. */
 function timeAgo(iso: string) {
   const seconds = Math.max(1, (Date.now() - new Date(iso).getTime()) / 1000);
+  // Each pair is [divisor, the unit you are left with AFTER dividing]. These
+  // used to be labelled with the unit going IN, so every result came out one
+  // step too small - a note posted 21 hours ago read "21 minutes ago" on the
+  // homepage while giscus correctly said 21 hours.
   const steps: [number, Intl.RelativeTimeFormatUnit][] = [
-    [60, "second"],
     [60, "minute"],
-    [24, "hour"],
-    [7, "day"],
-    [4.345, "week"],
-    [12, "month"],
+    [60, "hour"],
+    [24, "day"],
+    [7, "week"],
+    [4.345, "month"],
+    [12, "year"],
   ];
   let value = seconds;
   let unit: Intl.RelativeTimeFormatUnit = "second";
