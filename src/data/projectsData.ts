@@ -27,6 +27,10 @@ import {
   SiGooglechrome,
   SiGradle,
   SiJunit5,
+  SiCplusplus,
+  SiApple,
+  SiHomebrew,
+  SiGnubash,
 } from "react-icons/si";
 
 export type TechIcon = ComponentType<{ className?: string }>;
@@ -35,7 +39,8 @@ export type TechKey =
   | "node" | "tailwind" | "github" | "fastapi" | "redis" | "python"
   | "kotlin" | "android" | "compose" | "mqtt" | "supabase" | "databricks"
   | "postgres" | "docker" | "grafana" | "prometheus" | "sklearn" | "qdrant"
-  | "chrome" | "gradle" | "junit" | "playwright" | "websockets" | "llm";
+  | "chrome" | "gradle" | "junit" | "playwright" | "websockets" | "llm"
+  | "cpp" | "macos" | "homebrew" | "shell";
 
 export type TechItem = TechKey | { label: string; tooltip?: string; };
 
@@ -67,6 +72,7 @@ export const iconMap: Record<TechKey, TechIcon> = {
   postgres: SiPostgresql, docker: SiDocker, grafana: SiGrafana, prometheus: SiPrometheus,
   sklearn: SiScikitlearn, qdrant: SiQdrant, chrome: SiGooglechrome, gradle: SiGradle,
   junit: SiJunit5, playwright: MousePointerClick, websockets: Radio, llm: Sparkles,
+  cpp: SiCplusplus, macos: SiApple, homebrew: SiHomebrew, shell: SiGnubash,
 };
 
 export const techNames: Record<TechKey, string> = {
@@ -78,9 +84,21 @@ export const techNames: Record<TechKey, string> = {
   docker: "Docker", grafana: "Grafana", prometheus: "Prometheus", sklearn: "scikit-learn",
   qdrant: "Qdrant", chrome: "Chrome Extension", gradle: "Gradle", junit: "JUnit",
   playwright: "Playwright", websockets: "WebSockets", llm: "LLM",
+  cpp: "C++", macos: "macOS", homebrew: "Homebrew", shell: "Shell",
 };
 
 export const projectsData: Project[] = [
+  {
+    slug: "cp-mac",
+    title: "cp-mac",
+    imageTitle: "Same code. Now it runs.",
+    src: "/project-image/cp-mac.png",
+    description: "On macOS, g++ is really Apple Clang, so competitive programming code that passes every judge fails locally. cp-mac makes bits/stdc++.h, pb_ds, rope and __gcd work under Apple Clang - plus a judge-size stack for deep recursion - in one install, with no GCC and no editor reconfiguration.",
+    tech: ["cpp", "macos", "homebrew", "shell"],
+    github: "https://github.com/Paras-ydv/cp-mac",
+    status: "live",
+    hasPin: true,
+  },
   {
     slug: "testpilot-ai",
     title: "TestPilot AI",
