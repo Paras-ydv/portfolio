@@ -11,14 +11,16 @@ export function RightNavbar() {
 
   const links = useMemo(
     () => [
-      // Blog is hidden while portfolio.config.ts has sections.blog = false.
-      ...(portfolio.sections.blog ? [{ name: "Blog", href: "#blogs" }] : []),
       { name: "Experience", href: "#experience" },
       { name: "Projects", href: "#projects" },
       { name: "Hackathons", href: "#hackathons" },
       { name: "DSA / CP", href: "#dsa" },
       { name: "Skills", href: "#skills" },
       { name: "Education", href: "#education" },
+      // Sits between Education and Anime on the page, and this list drives both
+      // the index and the scroll-spy - out of order, it highlights the wrong
+      // entry. Hidden while portfolio.config.ts has sections.blog = false.
+      ...(portfolio.sections.blog ? [{ name: "Blog", href: "#blogs" }] : []),
       { name: "Anime & Music", href: "#anime" },
       { name: "Highlights", href: "#highlights" },
       { name: "Guestbook", href: "#guestbook" },
