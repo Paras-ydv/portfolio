@@ -57,6 +57,11 @@ export interface Project {
   github: string;
   /** Omit when there is nothing working to link to. */
   live?: string;
+  /**
+   * A demo reel for the detail page, shown in place of `src`. It carries a
+   * voice-over, so it is never autoplayed - `src` becomes its poster frame.
+   */
+  video?: string;
   status: ProjectStatus;
   starsText?: string;
   backgroundImage?: string;
@@ -95,6 +100,7 @@ export const projectsData: Project[] = [
     src: "/project-image/cp-mac.png",
     description: "On macOS, g++ is really Apple Clang, so competitive programming code that passes every judge fails locally. cp-mac makes bits/stdc++.h, pb_ds, rope and __gcd work under Apple Clang - plus a judge-size stack for deep recursion - in one install, with no GCC and no editor reconfiguration.",
     tech: ["cpp", "macos", "homebrew", "shell"],
+    video: "/project-video/cp-mac.mp4",
     github: "https://github.com/Paras-ydv/cp-mac",
     status: "live",
     hasPin: true,

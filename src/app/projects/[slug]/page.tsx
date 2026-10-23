@@ -111,7 +111,21 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
 
         {/* Media (Video or Image) right at the top */}
         <div className="w-full aspect-[16/10] relative mt-8 rounded-lg overflow-hidden border border-black/10 dark:border-white/[0.15] shadow-sm bg-zinc-100 dark:bg-[#0a0a0a] z-20">
-          <Image
+          {project.video ? (
+            // Narrated, so it waits to be played rather than autoplaying muted -
+            // a demo reel with the voice-over stripped out is just a slideshow.
+            // The still doubles as the poster, so the frame is never empty.
+            <video
+              src={project.video}
+              poster={project.src}
+              controls
+              preload="metadata"
+              playsInline
+              aria-label={`${project.title} demo`}
+              className="absolute inset-0 h-full w-full object-contain bg-black"
+            />
+          ) : (
+            <Image
               src={project.src}
               alt={project.imageTitle}
               fill
@@ -120,6 +134,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
               quality={80}
               className="object-contain"
             />
+          )}
         </div>
 
         {/* Top Dashed Divider (Blueprint system) */}
