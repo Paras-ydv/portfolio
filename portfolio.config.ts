@@ -70,8 +70,7 @@ export const portfolio = {
    * and routes stay in place, so flipping one back to true is the whole job.
    */
   sections: {
-    /** Off until the first post is written - an empty list reads as neglect. */
-    blog: false,
+    blog: true,
     anime: true,
   },
 
