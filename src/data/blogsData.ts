@@ -38,6 +38,16 @@ export type BlogBlock =
  */
 export const blogsData: Blog[] = [
   {
+    title: "Open Source & GSoC: A Guide to Getting Started",
+    date: "Nov 5, 2026",
+    claps: 50,
+    tags: ["Open Source", "GSoC", "Guide"],
+    link: "https://x.com/i/article/2118229255620276224",
+    isExternal: true,
+    description:
+      "EP-01 of the insights series: what open source actually is, why contribute, how GSoC works, and how to find and land a first issue.",
+  },
+  {
     title: "bits/stdc++.h, pb_ds and rope on macOS with one command",
     date: "Oct 23, 2026",
     claps: 14,
