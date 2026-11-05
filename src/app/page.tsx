@@ -18,6 +18,7 @@ import { portfolio } from "~/portfolio.config";
 import { CleanHash } from "@/components/CleanHash";
 import { GuestbookNotes } from "@/components/GuestbookNotes";
 import { getGuestbook } from "@/lib/stats/guestbook";
+import { getBlogMetrics } from "@/lib/stats/blogs";
 import { skillGroups } from "@/data/skillsData";
 import { getSocialProfiles } from "@/lib/stats/socials";
 import SoftPillButton from "@/components/pixel-perfect/soft-pill-button";
@@ -37,6 +38,7 @@ const darkBannerPlaceholder =
 export default async function Home() {
   const socialProfiles = await getSocialProfiles();
   const guestbook = await getGuestbook();
+  const blogMetrics = await getBlogMetrics();
 
   return (
     <div className="min-h-screen w-full bg-white dark:bg-black relative overflow-x-hidden transition-colors duration-300">
@@ -477,7 +479,7 @@ export default async function Home() {
               <div className="absolute bottom-0 -right-4 w-[2px] h-[2px] bg-black/50 dark:bg-white/[0.25] translate-x-1/2 translate-y-1/2 pointer-events-none z-20" />
             </div>
 
-            <BlogList />
+            <BlogList counts={blogMetrics.counts} />
 
             {/* View All Button */}
             <div className="py-4 px-4 -mx-4 flex justify-center relative hover:bg-zinc-50 dark:hover:bg-zinc-900/20 transition-colors cursor-pointer rounded-b-lg mt-0">

@@ -5,6 +5,13 @@ export interface Blog {
   tags: string[];
   link: string;
   isExternal: boolean;
+  /**
+   * Where to read the live approval count. `claps` stays as the committed
+   * fallback for when the upstream is unreachable.
+   */
+  live?:
+    | { source: "codeforces"; entryId: number }
+    | { source: "x"; handle: string; statusId: string };
   slug?: string;
   description?: string;
   readingTime?: string;
@@ -44,6 +51,8 @@ export const blogsData: Blog[] = [
     tags: ["Open Source", "GSoC", "Guide"],
     link: "https://x.com/i/article/2118229255620276224",
     isExternal: true,
+    // the count lives on the tweet that announced the article, not the article
+    live: { source: "x", handle: "parascodes", statusId: "2118271130712809929" },
     description:
       "EP-01 of the insights series: what open source actually is, why contribute, how GSoC works, and how to find and land a first issue.",
   },
@@ -54,6 +63,7 @@ export const blogsData: Blog[] = [
     tags: ["macOS", "C++", "pb_ds", "Tools"],
     link: "https://codeforces.com/blog/entry/158076",
     isExternal: true,
+    live: { source: "codeforces", entryId: 158076 },
     description:
       "Why GCC-only competitive programming code fails under Apple Clang, and how cp-mac fixes the headers, the missing std functions and the 8 MB stack in one install.",
   },
