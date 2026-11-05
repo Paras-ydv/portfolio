@@ -2,24 +2,14 @@
 
 import React from "react";
 import Link from "next/link";
-import { ArrowRight, ArrowUpRight, Calendar } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Calendar, Heart } from "lucide-react";
 import { blogsData } from "@/data/blogsData";
 
-const RealClapIcon = ({ className }: { className?: string }) => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
-    <path d="M10 20v-5.5"></path>
-    <path d="M14 20v-5.5"></path>
-    <path d="M10.5 7A2.5 2.5 0 0 1 13 4.5V2"></path>
-    <path d="M13.5 7A2.5 2.5 0 0 0 11 4.5V2"></path>
-    <path d="M16 12.5V9a2.5 2.5 0 0 0-5 0"></path>
-    <path d="M8 12.5V9a2.5 2.5 0 0 1 5 0"></path>
-    <path d="M12 20a4 4 0 0 1-4-4V7a2 2 0 0 1 4 0v9"></path>
-    <path d="M16 16a4 4 0 0 0 4-4v-3a2 2 0 0 0-4 0"></path>
-    <path d="M8 16a4 4 0 0 1-4-4v-3a2 2 0 0 1 4 0"></path>
-  </svg>
-);
-
-export function BlogList() {
+/**
+ * `counts` carries the live approval numbers keyed by post link, fetched on the
+ * server. Anything missing falls back to the number committed in blogsData.
+ */
+export function BlogList({ counts }: { counts?: Record<string, number> }) {
   // Nothing published yet. Without this the section renders as a bare heading
   // over empty space, which reads as a broken page rather than a deliberate one.
   if (blogsData.length === 0) {
@@ -86,9 +76,9 @@ export function BlogList() {
                     <span>{blog.date}</span>
                   </div>
 
-                  <div className="flex items-center gap-1.5 text-emerald-600 dark:text-emerald-500 font-medium">
-                    <RealClapIcon className="w-3.5 h-3.5" />
-                    <span>{blog.claps}</span>
+                  <div className="flex items-center gap-1.5 text-rose-500 dark:text-rose-400 font-medium">
+                    <Heart className="w-3.5 h-3.5" fill="currentColor" strokeWidth={0} />
+                    <span className="tabular-nums">{counts?.[blog.link] ?? blog.claps}</span>
                   </div>
 
                   {/* Vertical Divider */}
