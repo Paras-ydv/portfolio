@@ -101,3 +101,21 @@ renders an empty state you did not intend, and every external link resolves.
 Import to Vercel. Add `GITHUB_TOKEN` for the live contribution graph, and set
 `NEXT_PUBLIC_SITE_URL` (or `url` in the config) to your domain so canonical
 URLs, the sitemap and OG tags point at the right host.
+
+### Visitor count (optional)
+
+The footer shows a visitor count read from Vercel Web Analytics, which
+`<Analytics />` in `app/layout.tsx` has been feeding since your first deploy.
+Without credentials the count is simply not rendered.
+
+Add `VERCEL_ANALYTICS_TOKEN` (an access token from
+<https://vercel.com/account/tokens>) to the project's environment variables.
+`VERCEL_PROJECT_ID` is a Vercel system variable, so it is already set in
+production - but not locally, so put both in `.env.local` to see the count in
+`next dev` and to run the refresh script.
+
+Hobby accounts only retain one month of analytics, so the running total is kept
+in `src/data/visitors-baseline.json`. Run `npm run refresh-visitors` **at least
+once a month** and commit the result; it folds the last window into the
+baseline and resets the clock. Skip it for longer than a month and the traffic
+in between is lost.

@@ -1,0 +1,6 @@
+{
+  "_comment": "Rolled forward by `npm run refresh-visitors`. Vercel's Hobby plan only guarantees a 1-month reporting window, so the all-time figure cannot be read from the API forever. This file is the committed floor: the total as of `asOf`, to which the fetcher adds everything the API reports since that instant. Refresh it at least monthly or the window will slide past `asOf` and undercount.",
+  "asOf": "2026-11-15T14:37:13.889Z",
+  "visitors": 3267,
+  "pageviews": 6000
+}

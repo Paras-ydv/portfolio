@@ -19,6 +19,7 @@ import { CleanHash } from "@/components/CleanHash";
 import { GuestbookNotes } from "@/components/GuestbookNotes";
 import { getGuestbook } from "@/lib/stats/guestbook";
 import { getBlogMetrics } from "@/lib/stats/blogs";
+import { getVisitors } from "@/lib/stats/visitors";
 import { skillGroups } from "@/data/skillsData";
 import { getSocialProfiles } from "@/lib/stats/socials";
 import SoftPillButton from "@/components/pixel-perfect/soft-pill-button";
@@ -27,7 +28,7 @@ import SocialHoverCard from "@/components/pixel-perfect/social-hover-card";
 import { BannerParticles } from "@/components/BannerParticles";
 import Image from "next/image";
 import { SiGithub, SiLeetcode } from "react-icons/si";
-import { MessageSquare } from "lucide-react";
+import { Eye, MessageSquare } from "lucide-react";
 
 
 const lightBannerPlaceholder =
@@ -39,6 +40,7 @@ export default async function Home() {
   const socialProfiles = await getSocialProfiles();
   const guestbook = await getGuestbook();
   const blogMetrics = await getBlogMetrics();
+  const visitors = await getVisitors();
 
   return (
     <div className="min-h-screen w-full bg-white dark:bg-black relative overflow-x-hidden transition-colors duration-300">
@@ -633,6 +635,19 @@ export default async function Home() {
               <SiGithub className="h-3 w-3" aria-hidden="true" />
               Source on GitHub
             </a>
+          )}
+          {/* Not a link: the same pill shape, minus the hover affordance. Hidden
+              entirely at zero, so an unconfigured fork shows nothing rather
+              than boasting of no visitors. */}
+          {visitors.visitors > 0 && (
+            <span
+              title={`${visitors.pageviews.toLocaleString("en-US")} page views`}
+              className="inline-flex cursor-default items-center gap-2 rounded-[6px] border border-black/5 bg-zinc-50 px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.16em] text-zinc-400 dark:border-white/5 dark:bg-[#09090b] dark:text-zinc-600"
+            >
+              <Eye className="h-3 w-3" aria-hidden="true" />
+              <span className="tabular-nums">{visitors.visitors.toLocaleString("en-US")}</span>
+              visitors
+            </span>
           )}
         </div>
 
