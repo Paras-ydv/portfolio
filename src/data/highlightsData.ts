@@ -37,6 +37,17 @@ export const highlightsData: Highlight[] = [
     link: "https://lnkd.in/p/gKrFtq7E",
   },
   {
+    id: "hacktoberfest-2026-speaker",
+    title: "Speaker and judge at Hacktoberfest 2026 - 600+ students, 250+ teams",
+    badge: "Hacktoberfest 2026",
+    image: "/highlights/hacktoberfest-2026-panel.webp",
+    imageWidth: 740,
+    imageHeight: 487,
+    imageFit: "cover",
+    cardWidth: 300,
+    link: "https://www.linkedin.com/posts/parascodes_hacktoberfest2026-opensource-developercommunity-ugcPost-7528916724457574400-Q79S/",
+  },
+  {
     id: "databricks-hackathon",
     title: "Finalist at the Databricks Campus Hackathon - top 10 of 700+ teams",
     badge: "Databricks",
