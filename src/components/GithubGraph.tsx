@@ -69,38 +69,14 @@ export function GithubGraph() {
         }
       }
 
-      const query = `
-        query {
-          user(login: "${portfolio.handles.github}") {
-            contributionsCollection {
-              contributionCalendar {
-                totalContributions
-                months {
-                  name
-                }
-                weeks {
-                  contributionDays {
-                    contributionCount
-                    date
-                  }
-                }
-              }
-            }
-          }
-        }
-      `;
-
       try {
-        const response = await fetch("/api/github", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ query }),
-        });
+        // No body: the route owns the query. It used to be built here and
+        // forwarded to GitHub verbatim under the server's token, which let any
+        // caller run anything they liked as the token's owner.
+        const response = await fetch("/api/github", { method: "POST" });
 
         const data = await response.json();
-        const calendar = data?.data?.user?.contributionsCollection?.contributionCalendar;
+        const calendar = data?.calendar;
         
         if (calendar) {
           setWeeks(calendar.weeks);
